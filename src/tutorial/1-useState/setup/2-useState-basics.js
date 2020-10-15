@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
-// in this example, using UseState to change the title back and forth
+// General Rules of Hooks
+// all hooks will start with the word 'use': useState, useEffect, etc
+// the components' name must be uppercase like below UsedStateBasics
+// hooks MUST be in the component/function body
+// cannot call the hook conditionally
+// example of that is: if(hook){}
 
 const UseStateBasics = () => {
-  // console.log(useState('I am the default'));
-  // const value = useState(1)[0];
-  // const handleFunction = useState(1)[1];
-  // console.log(value, handleFunction);
-
   const [text, setText] = useState('UseState Random Title');
+  // this hook is located inside the component UseStateBasics
   const handleClick = () => {
     if (text === 'UseState Random Title') {
       setText('New Title Now');
@@ -25,8 +26,5 @@ const UseStateBasics = () => {
     </React.Fragment>
   );
 };
-// 1) now we will create a button that will handle the useState 'setText' function
-// 2) reminder that the function inside the HTML tag will need to be in curly braces to access it
-// 3) next is to create an if statement to have the title change back and forth
 
 export default UseStateBasics;
