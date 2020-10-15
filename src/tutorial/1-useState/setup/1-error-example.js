@@ -24,6 +24,5 @@ const ErrorExample = () => {
 // 3) insert the variable in curly braces within HTML tags to access it
 // 4) setup button to handle changing the title
 // 5) create a function for the button to change the title
-// 6) in order to change the title, you must use UseState
-// 7)
+// 6) in order to change the title, you must use UseState; next lesson
 export default ErrorExample;
