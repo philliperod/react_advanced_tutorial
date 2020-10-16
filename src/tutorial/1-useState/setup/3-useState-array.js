@@ -5,6 +5,14 @@ import {data} from '../../../data';
 
 const UseStateArray = () => {
   const [people, setPeople] = React.useState(data);
+  const removeItem = (id) => {
+    let newPeople = people.filter((person) => person.id !== id);
+    setPeople(newPeople);
+  };
+  // create a new variable (newPeople) which will equal to the state value (people)
+  // pass the id, then filter out the array
+  // for each and every person that you have, we want to remove the ones that have a matching id
+
   return (
     <>
       {people.map((person) => {
@@ -12,19 +20,18 @@ const UseStateArray = () => {
         return (
           <div key={id} className="item">
             <h4>{name}</h4>
+            <button onClick={() => removeItem(id)}>Clear Single Name</button>
           </div>
         );
       })}
       <button className="btn" onClick={() => setPeople([])}>
-        Clear Name
+        Clear All Names
       </button>
     </>
   );
 };
-// what if you want to remove the names by clicking on a button?
-// you can tackle this by creaeting an inline or reference function with onClick
-// you can invoke the setPeople function with the onClick button but it has to be within another function so it does not run when the page refresh
-// to clear the items in the array, you just need to return empty brackets
-// now when you click on the button, it will clear all of the div's
+// how to remove items individually with a button?
+// you'll need to create another function (removeItem) that will look for a specific id tied to the item in the array
+// the function will have id as a parameter and have an array.filter() method inside its function
 
 export default UseStateArray;
