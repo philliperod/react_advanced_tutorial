@@ -15,14 +15,16 @@ const UseStateArray = () => {
           </div>
         );
       })}
+      <button className="btn" onClick={() => setPeople([])}>
+        Clear Name
+      </button>
     </>
   );
 };
-// RECAP:
-// use useState hook which has the {data} array as the default value
-// invoke the hook: you are getting a default value (people) of what you provide state value which is the state value
-// then you have a function (setPeople) that controls it
-// your return: you access that variable (default value which is an array) and iterate over that array with the map() method
-// then you display every item in a div and show the name in a heading
+// what if you want to remove the names by clicking on a button?
+// you can tackle this by creaeting an inline or reference function with onClick
+// you can invoke the setPeople function with the onClick button but it has to be within another function so it does not run when the page refresh
+// to clear the items in the array, you just need to return empty brackets
+// now when you click on the button, it will clear all of the div's
 
 export default UseStateArray;
