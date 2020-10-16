@@ -18,8 +18,11 @@ const UseStateArray = () => {
     </>
   );
 };
-// 8) next, we'll destructure the array within the map() method
-// 9) and return a <div> that has a key attribute with the {data} prop id
-// 10) the <h4> will contain the {data} prop name
+// RECAP:
+// use useState hook which has the {data} array as the default value
+// invoke the hook: you are getting a default value (people) of what you provide state value which is the state value
+// then you have a function (setPeople) that controls it
+// your return: you access that variable (default value which is an array) and iterate over that array with the map() method
+// then you display every item in a div and show the name in a heading
 
 export default UseStateArray;
