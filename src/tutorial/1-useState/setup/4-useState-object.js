@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 
-// UseState Object Example
+// UseState: Multiple State Values
+// rather than setting up a big object that holds many props/values
+// you can setup multiple state values that can target specificity
+// you invoke the state function within the function that is making a change
+// in your return, rather than using object dot notation, you use state value
 
 const UseStateObject = () => {
   const [person, setPerson] = useState({
@@ -10,24 +14,25 @@ const UseStateObject = () => {
   });
   console.log(person);
 
+  const [name, setName] = useState('Phil');
+  const [age, setAge] = useState(38);
+  const [message, setMessage] = useState('Learning React');
+
   const changeMessage = () => {
-    setPerson({ ...person, message: 'Learned React' });
+    // setPerson({ ...person, message: 'Learned React' });
+    setMessage('Using Multiple State Values');
   };
 
   return (
     <>
-      <h3>{person.name}</h3>
-      <h3>{person.age}</h3>
-      <h3>{person.message}</h3>
+      <h3>{name}</h3>
+      <h3>{age}</h3>
+      <h3>{message}</h3>
       <button className="btn" onClick={changeMessage}>
         Change Message
       </button>
     </>
   );
 };
-// setPerson({message: 'Learned React}): when you changed the message value in the hook, it erases the other values (name, age)
-// so how can you change ONLY the value without erasing everything else?
-// use the spread operator
-// it will first copy the state values (person) then select whichever value you want to override (in this case, message)
 
 export default UseStateObject;
