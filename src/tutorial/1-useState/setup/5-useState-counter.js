@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 
-// Simple Counter
-// 1) created a heading with a counter value and buttons to increase/descrease/reset that value
-// 2) created an inline function for the onClick handler for the increase/decrease button
-// 3) create a reference function for the reset button
-// side note: this is repetition to show that you can choose inline or reference functions
+// Functional Update Form
 
 const UseStateCounter = () => {
   const [value, setValue] = useState(0);
 
   const reset = () => {
     setValue(0);
+  };
+
+  const complexIncrease = () => {
+    setTimeout(() => {
+      setValue(value + 1);
+    }, 2000);
   };
 
   return (
@@ -26,6 +28,13 @@ const UseStateCounter = () => {
         </button>
         <button className="btn" onClick={reset}>
           Reset
+        </button>
+      </section>
+      <section style={{ margin: '4rem 0' }}>
+        <h2>complex counter</h2>
+        <h1>{value}</h1>
+        <button className="btn" onClick={complexIncrease}>
+          Increase Later
         </button>
       </section>
     </>
