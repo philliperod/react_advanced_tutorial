@@ -11,7 +11,7 @@ const UseStateObject = () => {
   console.log(person);
 
   const changeMessage = () => {
-    setPerson({ message: 'Learned React' });
+    setPerson({ ...person, message: 'Learned React' });
   };
 
   return (
@@ -25,14 +25,9 @@ const UseStateObject = () => {
     </>
   );
 };
-// 1) create a hook
-// 2) person is state value, setPerson is the function that will control that value
-// 3) it will equal to the useState in which it will pass an object, variable, or array
-// 4) what will happen if you change the state value?
-// 5) first, set the return in the React.Fragment (shorthand)
-// 6) return a <h3> with each prop within curly braces inbetween the tags
-// 7) next, create a button that will change those values in the array
-// 8) set the onClick with a function (changeMessage) that will be invoked once clicked
-// 9) inside the changeMessage function, you will invoke the state function (setPerson)
+// setPerson({message: 'Learned React}): when you changed the message value in the hook, it erases the other values (name, age)
+// so how can you change ONLY the value without erasing everything else?
+// use the spread operator
+// it will first copy the state values (person) then select whichever value you want to override (in this case, message)
 
 export default UseStateObject;
