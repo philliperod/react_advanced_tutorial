@@ -1,6 +1,5 @@
 import React from 'react';
-import Setup from './tutorial/1-useState/setup/5-useState-counter';
-// import Final from './tutorial/1-useState/final/2-useState-basics';
+import Setup from './tutorial/2-useEffect/setup/1-useEffect-basics';
 
 function App() {
   return (
