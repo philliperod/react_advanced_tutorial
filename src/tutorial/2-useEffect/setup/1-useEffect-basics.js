@@ -9,6 +9,10 @@ const UseEffectBasics = () => {
       document.title = `New Messages(${value})`;
     }
   }, [value]);
+
+  useEffect(() => {
+    console.log('second useEffect called');
+  });
   console.log('component rendered');
 
   return (
@@ -24,5 +28,7 @@ const UseEffectBasics = () => {
 export default UseEffectBasics;
 
 // Second parameters in useEffect
+// second parameter is called a dependency
 // second parameter will equal an empty array
 // what will happen is the useEffect will only render initially and not every time the component runs
+//
