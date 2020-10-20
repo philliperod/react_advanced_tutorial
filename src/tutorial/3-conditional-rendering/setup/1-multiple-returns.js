@@ -8,11 +8,15 @@ const MultipleReturns = () => {
   useEffect(() => {
     fetch(url)
       .then((resp) => resp.json())
-      .then((user) => console.log(user))
+      .then((user) => {
+        const { login } = user;
+        setUser(login);
+        setIsLoading(false);
+      })
       .catch((error) => console.log(error));
   }, []);
 
-  if (!isLoading) {
+  if (isLoading) {
     return (
       <div>
         <h1>loading...</h1>
@@ -37,8 +41,12 @@ const MultipleReturns = () => {
 
 export default MultipleReturns;
 
-// next example: setting up a fetch request that will control the conditions in useEffect hook
-// fetch(url) sends a GET request and returns a promise with the contents of the url
-// then((resp) => resp.json()) will take that content and parse it as JSON
-// catch((error) => console.log(error)) is a rejection handler; if any of the promises rejects then this will catch it
-// the second argument in the useEffect will clean it up; tells React that your effect doesn’t depend on any values from props or state, so it never needs to re-run
+// question: after setting up, how can we operate with these values?
+// first, you need to understand when you are calling this function
+// if you set isLoading right away to true, when do you want to change it? Once you get your data
+// what if the user does not exist?
+// first, you'll look for the object (login) which comes from the user
+// you have two state functions: setIsLoading, setUser
+// since the first condition (isLoading) is true then you then you would want to hide it
+// first set up setUser and pass the login; looking for the user
+// second set up setIsLoading and pass false because you have the data you want instead of the default user
