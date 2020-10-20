@@ -10,7 +10,12 @@ const UseEffectCleanup = () => {
   };
 
   useEffect(() => {
+    console.log('triggering a re-render');
     window.addEventListener('resize', checkSize);
+    return () => {
+      console.log('clean-up function working');
+      window.removeEventListener('resize', setSize);
+    };
   });
 
   return (
@@ -23,9 +28,14 @@ const UseEffectCleanup = () => {
 
 export default UseEffectCleanup;
 
-// this example is checking on the size of the window
-// default value is (window.innerWidth)
-// set the state value inside the <h2> tag to be accessed and displayed on the page
-// next we will setup an event listener on the window
-// first, setup a function (checkSize) that will take the state function (setSize) when executed which its default value is window.innerWidth
-// second, setup an useEffect hook that will add an eventListener to when the window size of the browser changes and runs the checkSize function to display that value
+// with its current state, it will experience memory leaks (check the event Listeners in the browser)
+// so we need to create something that once we exist the hook, it will remove the event listener
+// why is this happening?
+// the callback function (state function) in checkSize is triggering the re-rendering because the moment we invoke the callback function (state function) it updates the state value
+// the useState is preserving the state value and triggering the re-rendering
+// each time we invoke the checSize function for every resizing we are also triggering the re-render
+
+// to counter the problem of this memory leak, we will use a clean-up function
+// so every time we have an useEffect hook, we can have an option of returning a function
+// the clean-up function will be invoked once it exists out of the useEffect
+//
