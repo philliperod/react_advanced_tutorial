@@ -15,6 +15,13 @@ const ShortCircuit = () => {
         Toggle Error
       </button>
       {isError && <h2>Error...</h2>}
+      {isError ? (
+        <p>there is an error</p>
+      ) : (
+        <div>
+          <h2>There is no error</h2>
+        </div>
+      )}
     </>
   );
 };
@@ -24,8 +31,4 @@ export default ShortCircuit;
 // short-circuit evaluation
 // ternary operator
 
-// how to use this in JSX?
-// you can use the OR and AND operator within the object in JSX in which you can setup a default value
-// since the default value is an empty string, it is a falsy statement
-// the first one will return the default value
-// the second one will return the first value (empty string)
+// ternary ooeratir - condition ? if true, run this argument : if not, then run this argument
