@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-const url = 'https://api.github.com/users/QuincyLarson';
+const url = 'https://api.github.com/users/QuincyLarsons';
 const MultipleReturns = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -7,7 +7,15 @@ const MultipleReturns = () => {
 
   useEffect(() => {
     fetch(url)
-      .then((resp) => resp.json())
+      .then((resp) => {
+        if (resp.status >= 200 && resp.status <= 299) {
+          return resp.json();
+        } else {
+          setIsLoading(false);
+          setIsError(true);
+          throw new Error(resp.statusText);
+        }
+      })
       .then((user) => {
         const { login } = user;
         setUser(login);
@@ -41,12 +49,9 @@ const MultipleReturns = () => {
 
 export default MultipleReturns;
 
-// question: after setting up, how can we operate with these values?
-// first, you need to understand when you are calling this function
-// if you set isLoading right away to true, when do you want to change it? Once you get your data
-// what if the user does not exist?
-// first, you'll look for the object (login) which comes from the user
-// you have two state functions: setIsLoading, setUser
-// since the first condition (isLoading) is true then you then you would want to hide it
-// first set up setUser and pass the login; looking for the user
-// second set up setIsLoading and pass false because you have the data you want instead of the default user
+// the catch error is a promise returned if there is an error with the data itself
+// now how you to respond if the issue is a http status 404 or such?
+// you can create an if statement within a then()
+// you setup the if statement in a range of 200-299 to return the data
+// if not within that range, that you change the statue values of isLoading to false and isError to true and javascript will run the conditions you set to output 'Error...'
+// this will return Error because in this example we did not import the correct filename (added an 's' on QuincyLarson)
