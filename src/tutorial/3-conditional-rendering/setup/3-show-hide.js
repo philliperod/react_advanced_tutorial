@@ -13,10 +13,22 @@ const ShowHide = () => {
 };
 
 const Item = () => {
+  const [size, setSize] = useState(window.innerWidth);
+  const checkSize = () => {
+    setSize(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', checkSize);
+    return () => {
+      window.removeEventListener('resize', checkSize);
+    };
+  }, []);
+
   return (
     <div style={{ marginTop: '2rem' }}>
       <h1>window</h1>
-      <h2>size: </h2>
+      <h2>size: {size} px</h2>
     </div>
   );
 };
@@ -27,3 +39,6 @@ export default ShowHide;
 // create your jsx where a button will toggle the state boolean value
 // create another component that will display its own jsx
 // in the ShowHide component, setup a condition that will toggle between the first argument (state value) and second argument (Item component and its contents)
+// REMINDER: you need to setup a clean-up function when creating a side effect
+// within the Item component, create another useState hook with useEffect
+//
