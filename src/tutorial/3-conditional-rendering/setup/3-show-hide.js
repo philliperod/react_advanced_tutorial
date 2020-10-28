@@ -41,4 +41,5 @@ export default ShowHide;
 // in the ShowHide component, setup a condition that will toggle between the first argument (state value) and second argument (Item component and its contents)
 // REMINDER: you need to setup a clean-up function when creating a side effect
 // within the Item component, create another useState hook with useEffect
-//
+// your return in the useEffect will contain the clean-up function
+// in this example, it is removing the event listener
