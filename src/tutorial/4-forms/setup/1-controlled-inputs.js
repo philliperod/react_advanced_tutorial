@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 
 const ControlledInputs = () => {
+  const [firstName, setFirstName] = useState('');
+  const [email, setEmail] = useState('');
+
   const handleSubmit = (submission) => {
     submission.preventDefault();
     console.log('hello everybody');
@@ -12,11 +15,17 @@ const ControlledInputs = () => {
         <form className="form" onSubmit={handleSubmit}>
           <div className="form-control">
             <label htmlFor="firstName">Name: </label>
-            <input type="text" name="firstName" id="firstName" />
+            <input
+              type="text"
+              name="firstName"
+              id="firstName"
+              value={firstName}
+              onChange={(submission) => setFirstName(submission.target.value)}
+            />
           </div>
           <div className="form-control">
             <label htmlFor="email">Email: </label>
-            <input type="text" name="email" id="email" />
+            <input type="text" name="email" id="email" value={email} />
           </div>
           <button type="submit">add person</button>
         </form>
@@ -27,9 +36,10 @@ const ControlledInputs = () => {
 
 export default ControlledInputs;
 
-// there are two ways to have a submit
-// 1) add onSubmit onto the main form
-// 2) add onClick onto the <button type='submit'>
-// now what will happen when you press enter or click on submit?
-// Your browser will, first, attempt to submit the form which will reset the form
-// 3) object.preventDefault(): prevents the browser from submitting the form rather than submitting through your function
+// now, how do you access the data from the inputs?
+// we'll need to setup state values and add key attributes to the form
+// one attribute will be a reference to the state value
+// second attribute will be onChange event listener which will fire the callback function every time someone types something in the inputs
+// the default values for both hooks will be empty strings
+// for both inputs, you setup the value attribute which will equal to the state values
+// the onChange handler will have an inline function that will invoke the state function which will pass the event into its state value
