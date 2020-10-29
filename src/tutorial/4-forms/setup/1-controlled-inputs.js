@@ -3,10 +3,17 @@ import React, { useState } from 'react';
 const ControlledInputs = () => {
   const [firstName, setFirstName] = useState('');
   const [email, setEmail] = useState('');
+  const [people, setPeople] = useState([]);
 
   const handleSubmit = (submission) => {
     submission.preventDefault();
-    console.log('hello everybody');
+
+    if (firstName && email) {
+      const person = { firstName, email };
+      console.log(person);
+    } else {
+      console.log('empty values');
+    }
   };
 
   return (
@@ -42,11 +49,11 @@ const ControlledInputs = () => {
 
 export default ControlledInputs;
 
-// the onChange handler is affecting two things: the state value and input
-// the onChange will access the event object and to get the value, it'll look for the event, target, and input value
+// next to add inputs to a list
+// create a useState hook that will have the list of people
+// next, when the form is submitted then to add those inputs to the people list
+// the handleSubmit function will do these actions, but will need a condition set that both inputs must be filled to submit
+// and that condition true, then we want to submit those values into an object
 
 // REMINDER
-// in order to setup controlled inputs:
-// 1) you need to setup a value property that reference to state value
-// 2) have a onChange event handler that will either reference with a function that looks for an event
-// 3) in order to control the state value, you invoke the state function in which you will pass in the event.target (which you are grabbing the input) and get the state value
+// if the prop and value equal in naming convention, then you only need to write the prop's name
