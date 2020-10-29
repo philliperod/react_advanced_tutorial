@@ -9,10 +9,12 @@ const ControlledInputs = () => {
     submission.preventDefault();
 
     if (firstName && email) {
-      const person = { firstName, email };
+      const person = { id: new Date().getTime().toString(), firstName, email };
       setPeople((people) => {
         return [...people, person];
       });
+      setFirstName('');
+      setEmail('');
     } else {
       console.log('empty values');
     }
@@ -44,6 +46,16 @@ const ControlledInputs = () => {
           </div>
           <button type="submit">add person</button>
         </form>
+        {people.map((person) => {
+          const { id, firstName, email } = person;
+
+          return (
+            <div className="item" key={id}>
+              <h4>{firstName}</h4>
+              <p>{email}</p>
+            </div>
+          );
+        })}
       </article>
     </>
   );
@@ -51,11 +63,7 @@ const ControlledInputs = () => {
 
 export default ControlledInputs;
 
-// next to add inputs to a list
-// create a useState hook that will have the list of people
-// next, when the form is submitted then to add those inputs to the people list
-// the handleSubmit function will do these actions, but will need a condition set that both inputs must be filled to submit
-// and if that condition is true, then we want to submit those values into an object that will go into the people array
-// then invoke the state function 'setPeople' and pass tthe current value of the state
-// and return all the values using a spread operator and the person onject as well
-// after inputting the values into the array, then we want to reset the inputs to empty strings
+// now to setup a display of the people that were entered
+// you want to iterate over the state value in which every value will be an object
+// use destructuring for id, firstName, and email
+// structured your jsx to display entered values which each will have an unique id
