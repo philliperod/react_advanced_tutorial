@@ -10,7 +10,9 @@ const ControlledInputs = () => {
 
     if (firstName && email) {
       const person = { firstName, email };
-      console.log(person);
+      setPeople((people) => {
+        return [...people, person];
+      });
     } else {
       console.log('empty values');
     }
@@ -53,7 +55,7 @@ export default ControlledInputs;
 // create a useState hook that will have the list of people
 // next, when the form is submitted then to add those inputs to the people list
 // the handleSubmit function will do these actions, but will need a condition set that both inputs must be filled to submit
-// and that condition true, then we want to submit those values into an object
-
-// REMINDER
-// if the prop and value equal in naming convention, then you only need to write the prop's name
+// and if that condition is true, then we want to submit those values into an object that will go into the people array
+// then invoke the state function 'setPeople' and pass tthe current value of the state
+// and return all the values using a spread operator and the person onject as well
+// after inputting the values into the array, then we want to reset the inputs to empty strings
