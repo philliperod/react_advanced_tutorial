@@ -25,7 +25,13 @@ const ControlledInputs = () => {
           </div>
           <div className="form-control">
             <label htmlFor="email">Email: </label>
-            <input type="text" name="email" id="email" value={email} />
+            <input
+              type="text"
+              name="email"
+              id="email"
+              value={email}
+              onChange={(submission) => setEmail(submission.target.value)}
+            />
           </div>
           <button type="submit">add person</button>
         </form>
@@ -36,10 +42,11 @@ const ControlledInputs = () => {
 
 export default ControlledInputs;
 
-// now, how do you access the data from the inputs?
-// we'll need to setup state values and add key attributes to the form
-// one attribute will be a reference to the state value
-// second attribute will be onChange event listener which will fire the callback function every time someone types something in the inputs
-// the default values for both hooks will be empty strings
-// for both inputs, you setup the value attribute which will equal to the state values
-// the onChange handler will have an inline function that will invoke the state function which will pass the event into its state value
+// the onChange handler is affecting two things: the state value and input
+// the onChange will access the event object and to get the value, it'll look for the event, target, and input value
+
+// REMINDER
+// in order to setup controlled inputs:
+// 1) you need to setup a value property that reference to state value
+// 2) have a onChange event handler that will either reference with a function that looks for an event
+// 3) in order to control the state value, you invoke the state function in which you will pass in the event.target (which you are grabbing the input) and get the state value
